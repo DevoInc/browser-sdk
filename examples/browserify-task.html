@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Devo SDK: Browserify Task Demo</title>
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+  <script src="task-bundle.js"></script>
+</head>
+<body>
+  <h1>Devo SDK: Browserify Task Demo</h1>
+
+  <p>
+  Run this command to generate the bundle from the <a href="browserify-task.js">code</a>:
+  </p>
+  <pre>
+browserify ./examples/browserify-task.js -o ./examples/task-bundle.js
+  </pre>
+
+  <div>
+    <button id="btn_all">Show all tasks</button>
+    <button id="btn_new">Create New task</button>
+  </div>
+  <hr>
+  <div id="divTable" class="divTable greenTable" style="width: 95%;border: 1px solid #000;" >
+    <div id="divTableBody" class="divTableBody"></div>
+  </div>
+
+</body>
+</html>

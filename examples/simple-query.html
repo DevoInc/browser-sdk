@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Devo SDK: Simple Query Demo</title>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <h1>Devo SDK: Simple Query Demo</h1>
+
+  <p>
+  The distributed <a href="../dist/devo-bundle.js">bundle</a> is used directly in the
+  <a href="simple-query.js">demo code</a>.
+  Not intended for serious usage.
+  </p>
+
+  <div>
+    <button id="btn_launch">Launch Query</button>
+    <button id="btn_xslt">Excel Download</button>
+    <button id="btn_csv">CSV Download</button>
+    <button id="btn_tsv">TSV Download</button>
+    <button id="btn_msgpack">Msgpack Download</button>
+    <button id="btn_raw">Raw Download</button>
+    <button id="btn_json">JSON Download</button>
+  </div>
+  <hr>
+  <div id="divTable" class="divTable greenTable" style="width: 95%;border: 1px solid #000;" >
+    <div id="divTableBody" class="divTableBody"></div>
+  </div>
+
+  <script src="../dist/devo-bundle.js"></script>
+  <script src="simple-query.js"></script>
+
+</body>
+</html>

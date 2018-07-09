@@ -1,0 +1,45 @@
+{
+  "name": "@devo/browser-sdk",
+  "version": "1.0.0",
+  "description": "Devo browser SDK",
+  "author": "Devo Dev Team",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter list --timeout 10000 test/*.js",
+    "posttest": "npm run lint",
+    "lint": "eslint '**/*.js'",
+    "postinstall": "mkdir -p dist",
+    "link": "mkdir -p examples/node_modules/@devo && rm -f examples/node_modules/@devo/browser-sdk && ln -s ../../.. examples/node_modules/@devo/browser-sdk",
+    "browserify": "npm run link && browserify  ./examples/bundle-generator.js -o ./dist/devo-bundle.js",
+    "examples": "npm run link && browserify  ./examples/browserify-query.js -o ./examples/query-bundle.js && browserify  ./examples/browserify-task.js -o ./examples/task-bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:devoinc/browser-sdk.git"
+  },
+  "keywords": [
+    "Devo",
+    "SDK",
+    "API",
+    "Query",
+    "LinQ"
+  ],
+  "dependencies": {
+    "@devo/js-helper": "~1.0.0",
+    "node-fetch": "2.0.0",
+    "oboe": "2.1.4"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "eslint": "^4.5.0",
+    "mocha": "^3.5.0",
+    "should": "^12.0.0"
+  },
+  "license": "MIT"
+}

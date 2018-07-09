@@ -1,0 +1,49 @@
+{
+  "plugins": [
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "document": false,
+    "escape": false,
+    "navigator": false,
+    "unescape": false,
+    "window": false,
+    "describe": true,
+    "before": true,
+    "it": true,
+    "expect": true,
+    "sinon": true,
+    "ReactDOM": true,
+    "React" : true,
+    "$": true,
+    "Intl" : true
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "quotes": 0,
+    "no-undef": 1,
+    "global-strict": 0,
+    "no-extra-semi": 0,
+    "no-underscore-dangle": 0,
+    "no-console": 0,
+    "no-unused-vars": 0,
+    "no-trailing-spaces": 0,
+    "no-unreachable": 1,
+    "no-alert": 0
+  }
+}

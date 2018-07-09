@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Devo SDK: Simple Task Demo</title>
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+  <script src="../dist/devo-bundle.js"></script>
+  <script src="simple-task.js"></script>
+</head>
+<body>
+  <h1>Devo SDK: Simple Task Demo</h1>
+
+  <p>
+  The distributed <a href="../dist/devo-bundle.js">bundle</a> is used directly in the
+  <a href="simple-task.js">demo code</a>.
+  Not intended for serious usage.
+  </p>
+
+
+  <div>
+    <button id="btn_all">Show all tasks</button>
+    <button id="btn_new">Create New task</button>
+  </div>
+  <hr>
+  <div id="divTable" class="divTable greenTable" style="width: 95%;border: 1px solid #000;" >
+    <div id="divTableBody" class="divTableBody"></div>
+  </div>
+
+</body>
+</html>

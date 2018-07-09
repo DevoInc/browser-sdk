@@ -1,0 +1,8 @@
+*~
+*.swp
+node_modules
+dist/
+examples/*bundle*
+.idea
+package-lock.json
+credentials.json
