@@ -51,7 +51,7 @@ Example:
 ``` js
 const devo = require('@devo/browser-sdk')
 const client = devo.client({
-  url: 'https://api-us.devo.com/search',
+  url: 'https://api-us.logtrust.com/search',
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 })
@@ -64,8 +64,8 @@ The `credentials` parameter to `devo.client()` will have the following attribute
 Parameter `url` is the Devo endpoint you want to connect to.
 We currently have the following endpoints:
 
-* USA: [https://api-us.devo.com/search](https://api-us.devo.com/search)
-* EU: [https://api-eu.devo.com/search](https://api-eu.devo.com/search)
+* USA: [https://api-us.logtrust.com/search](https://api-us.logtrust.com/search)
+* EU: [https://api-eu.logtrust.com/search](https://api-eu.logtrust.com/search)
 
 #### `apiKey`
 
@@ -89,7 +89,7 @@ It should look like this:
 
 ```json
 {
-  "url": "https://api-us.devo.com/search",
+  "url": "https://api-us.logtrust.com/search",
   "apiKey": "your-api-key",
   "apiSecret": "your-api-secret"
 }
