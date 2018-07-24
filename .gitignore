@@ -2,7 +2,7 @@
 *.swp
 node_modules
 dist/
-examples/*bundle*
+examples/*-bundle.js
 .idea
 package-lock.json
 credentials.json
