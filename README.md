@@ -3,25 +3,29 @@
 This is the SDK to access Devo directly from client code in browsers.
 It can be used to query Devo, and to manage deferred tasks.
 
-## Installation
+A modern Node.js installation (version 8 or later) is required.
 
-To install the SDK run `npm`:
+## Quick Start
 
-    $ npm install @devo/browser-sdk
+These steps will allow you to use the SDK right away.
+First clone the repo:
 
-## Use
+```
+git clone https://github.com/devoinc/browser-sdk
+```
 
-There are several ways to use the Devo SDK in the browser,
-as you can see in the
-[demo pages](examples/index.html).
+Install all dependencies:
 
-### Quick Start
+```
+cd browser-sdk
+npm install
+```
 
 Run the browserify task:
 
     $ npm run browserify
 
-Afterwards include the generated file `dist/devo-bundle.js` directly in your HTML pages.
+Now include the generated file `dist/devo-bundle.js` directly in your HTML pages.
 You can also minify it or embed it in your software.
 From your code invoke `devo` as a global:
 
@@ -30,9 +34,10 @@ const client = devo.client(credentials);
 // do something with the client
 ```
 
-### Credentials
+## Credentials
 
-You need to be a customer to connect to the API.
+There are several ways to use the Devo SDK in the browser.
+All of them require a working set of credentials.
 You can obtain your API key and API secret from [Devo](https://www.devo.com/):
 go to the "Administration/Credentials" section,
 and then to
@@ -81,7 +86,23 @@ An alternative to API key and secret,
 HTTP tokens are a simple way of authenticating.
 They are also obtained from Devo.
 
-### Examples
+## Examples
+
+The
+[demo pages](examples/index.html)
+show the capabilities of the Devo SDK.
+To generate them first clone the repo:
+
+```
+git clone https://github.com/devoinc/browser-sdk
+```
+
+Install all dependencies:
+
+```
+cd browser-sdk
+npm install
+```
 
 Place your Devo [credentials](#Credentials) in a file called
 `examples/credentials.json`.
@@ -105,13 +126,29 @@ This will generate the examples with the right credentials:
 and
 [browserify task demo](examples/browserify-task.html) -
 [code](examples/browserify-task.js).
+Open these pages in a browser to try out the capabilities in action.
 
-### Browserify
+## Browserify
 
 If you are going to do any serious work with the Devo SDK
 you will probably want to browserify your code,
-instead of the sample provided.
-Place this code in a file called e.g. `sample.js`:
+instead of using the generated bundle.
+
+## Installation
+
+First install browserify:
+
+``` sh
+npm i -g browserify
+```
+
+To install the SDK use `npm`:
+
+    $ npm install @devo/browser-sdk
+
+Place this code including your
+[credentials](#Credentials)
+in a file called e.g. `sample.js`:
 
 ``` js
 const devo = require('@devo/browser-sdk')
@@ -127,11 +164,6 @@ browserify sample.js -o mybundle.js
 ```
 
 Note that in this case it is not necessary to include `dist/devo-bundle.js`,
-but it is required to have browserify installed:
-
-``` sh
-npm i -g browserify
-```
 
 And finally include the generated file `mybundle.js` in your web page:
 
