@@ -134,7 +134,7 @@ If you are going to do any serious work with the Devo SDK
 you will probably want to browserify your code,
 instead of using the generated bundle.
 
-## Installation
+### Installation
 
 First install browserify:
 
@@ -171,9 +171,7 @@ And finally include the generated file `mybundle.js` in your web page:
 <script src="mybundle.js"></script>
 ```
 
-See how it works in the
-[examples](examples/index.html).
-generated above.
+API usage follows.
 
 ## Querying
 
