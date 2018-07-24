@@ -16,8 +16,8 @@
     "lint": "eslint '**/*.js'",
     "postinstall": "mkdir -p dist",
     "link": "mkdir -p examples/node_modules/@devo && rm -f examples/node_modules/@devo/browser-sdk && ln -s ../../.. examples/node_modules/@devo/browser-sdk",
-    "browserify": "npm run link && browserify  ./examples/bundle-generator.js -o ./dist/devo-bundle.js",
-    "examples": "npm run link && browserify  ./examples/browserify-query.js -o ./examples/query-bundle.js && browserify  ./examples/browserify-task.js -o ./examples/task-bundle.js"
+    "browserify": "npm run link && browserify ./examples/bundle-generator.js -o ./dist/devo-bundle.js",
+    "examples": "npm run link && browserify ./examples/browserify-query.js -o ./examples/query-bundle.js && browserify ./examples/browserify-task.js -o ./examples/task-bundle.js"
   },
   "repository": {
     "type": "git",
