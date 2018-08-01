@@ -496,7 +496,7 @@ just a JSON file that contains the same attributes as the
 [initialization](#initialization) parameter.
 See the
 [Node.js
-project](https://github.com/devoinc/nodejs-sdk/README.md#Credentials)
+project](https://github.com/devoinc/nodejs-sdk/docs/client.md#client-credentials)
 for more details.
 
 And start playing!
