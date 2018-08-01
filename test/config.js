@@ -2,7 +2,6 @@
 
 const home = require('os').homedir()
 
-
 exports.readCredentials = function() {
   const env = {
     apiKey: process.env.DEVO_KEY,
