@@ -2,10 +2,10 @@
 
 require('should');
 
-const home = require('os').homedir()
 const clientLib = require('../lib/client.js');
+const config = require('./config.js');
 
-const credentials = require(home + '/.devo.json')
+const credentials = config.readCredentials()
 const client = clientLib.create(credentials)
 const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,method'
 const options = {
