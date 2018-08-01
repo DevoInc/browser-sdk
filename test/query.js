@@ -6,7 +6,7 @@ global.fetch = require('node-fetch');
 const home = require('os').homedir()
 const clientLib = require('../lib/client.js');
 
-const credentials = require(home + '/.devo.json')
+const credentials = readCredentials()
 const client = clientLib.create(credentials)
 const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,method'
 const from = new Date(Date.now() - 60 * 1000)
@@ -59,4 +59,22 @@ describe('Browser client', () => {
     });
   })
 });
+
+function readCredentials() {
+  const env = {
+    apiKey: process.env.DEVO_KEY,
+    apiSecret: process.env.DEVO_SECRET,
+    token: process.env.DEVO_TOKEN,
+    url: process.env.DEVO_URL,
+  }
+  try {
+    const read = require(home + '/.devo.json')
+    Object.keys(env).forEach(key => {
+      if (env[key]) read[key] = env[key]
+    })
+    return read
+  } catch(exception) {
+    return env
+  }
+}
 
