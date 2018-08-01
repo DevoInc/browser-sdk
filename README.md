@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.com/DevoInc/browser-sdk.svg)](http://travis-ci.com/DevoInc/browser-sdk)
+
 # Devo Browser SDK
 
 This is the SDK to access Devo directly from client code in browsers.
@@ -492,9 +494,10 @@ Note: you will need to place your [credentials](#credentials) in the file
 `$HOME/.devo.json`:
 just a JSON file that contains the same attributes as the
 [initialization](#initialization) parameter.
+If needed you can also use environment variables.
 See the
 [Node.js
-project](https://github.com/devoinc/nodejs-sdk/README.md#Credentials)
+project](https://github.com/devoinc/nodejs-sdk/docs/client.md#client-credentials)
 for more details.
 
 And start playing!

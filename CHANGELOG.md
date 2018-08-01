@@ -2,10 +2,15 @@
 
 Change log.
 
+## Version 1.1.0
+
+* Read test configuration from environment variables.
+* Enable Travis-CI continuous integration.
+
 ## Version 1.0.1
 
-Fix bundle generator.
-Improve documentation.
+* Fix bundle generator.
+* Improve documentation.
 
 ## Version 1.0.0
 
