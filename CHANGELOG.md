@@ -6,6 +6,10 @@ Change log.
 
 Removed mention to HTTP tokens.
 
+## Version 1.1.1
+
+[Retired]
+
 ## Version 1.1.0
 
 * Read test configuration from environment variables.
