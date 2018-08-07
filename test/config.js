@@ -6,7 +6,7 @@ exports.readCredentials = function() {
   const env = {
     apiKey: process.env.DEVO_KEY,
     apiSecret: process.env.DEVO_SECRET,
-    token: process.env.DEVO_TOKEN,
+    apiToken: process.env.DEVO_TOKEN,
     url: process.env.DEVO_URL,
   }
   try {
