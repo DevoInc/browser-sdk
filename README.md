@@ -46,9 +46,9 @@ and then to
 ["Access
 Keys"](https://docs.devo.com/confluence/docs/system-configuration/relays/credentials#Credentials-AccessKeys).
 Alternatively you can get an
-[HTTP
-token](https://docs.devo.com/confluence/docs/system-configuration/relays/credentials#Credentials-HttpTokens)
+API token
 instead.
+Note: API tokens are only supported on Devo 5.3 or later.
 
 ### Initialization
 
