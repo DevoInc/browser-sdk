@@ -82,10 +82,10 @@ API key, obtained from Devo.
 
 API secret, obtained from Devo.
 
-#### `token`
+#### `apiToken`
 
 An alternative to API key and secret,
-HTTP tokens are a simple way of authenticating.
+API tokens are a simple way of authenticating.
 They are also obtained from Devo.
 
 ## Examples
