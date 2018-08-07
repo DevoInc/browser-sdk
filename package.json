@@ -31,7 +31,7 @@
     "LinQ"
   ],
   "dependencies": {
-    "@devo/js-helper": "~1.0.0",
+    "@devo/js-helper": "^1.1.0",
     "node-fetch": "2.0.0",
     "oboe": "2.1.4"
   },
