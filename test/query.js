@@ -9,6 +9,7 @@ const config = require('./config.js');
 const credentials = config.readCredentials()
 const client = clientLib.create(credentials)
 const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,method'
+const TABLE = 'demo.ecommerce.data'
 const from = new Date(Date.now() - 60 * 1000)
 const to = new Date()
 
@@ -57,6 +58,17 @@ describe('Browser client', () => {
       error: done,
       done: () => done(),
     });
+  })
+
+  it('table schema (table exists)', () => {
+    return client.table(TABLE)
+      .then(result => result.object.should.be.an.object)
+  })
+
+  it('table schema (table doesn\'t exists)', (done) => {
+    client.table('pataticas')
+      .then(() => done('Table must not be exist'))
+      .catch(() => done());
   })
 });
 
