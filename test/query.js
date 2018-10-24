@@ -58,5 +58,20 @@ describe('Browser client', () => {
       done: () => done(),
     });
   })
+
+  it('sends query with skip and limit', () => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+      skip: 10,
+      limit: 10,
+    }
+    return client.query(options)
+      .then(result => {
+        result.object.length.should.be.a.Number()
+        result.object.length.should.be.below(11)
+      })
+  });
 });
 
