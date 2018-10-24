@@ -45,20 +45,6 @@ describe('Browser client', () => {
     return client.query(options)
   });
 
-  it('queries in streaming mode', done => {
-    const options = {
-      dateFrom: from,
-      dateTo: to,
-      query: QUERY,
-    }
-    client.stream(options, {
-      meta: () => null,
-      data: () => null,
-      error: done,
-      done: () => done(),
-    });
-  })
-
   it('sends query with skip and limit', () => {
     const options = {
       dateFrom: from,
@@ -73,5 +59,19 @@ describe('Browser client', () => {
         result.object.length.should.be.below(11)
       })
   });
+
+  it('queries in streaming mode', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+    }
+    client.stream(options, {
+      meta: () => null,
+      data: () => null,
+      error: done,
+      done: () => done(),
+    });
+  })
 });
 
