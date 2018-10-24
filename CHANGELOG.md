@@ -2,9 +2,13 @@
 
 Change log.
 
+## Version 1.2.0
+
+Added support for `skip` and `limit` options.
+
 ## Version 1.1.2
 
-Removed mention to HTTP tokens.
+Removed mention of HTTP tokens.
 
 ## Version 1.1.1
 
