@@ -1,6 +1,6 @@
 {
   "name": "@devo/browser-sdk",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Devo browser SDK",
   "author": "Devo Dev Team",
   "eslintConfig": {

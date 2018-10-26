@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.2.1
+
+Patch the case where streaming returns 200 but status contains 500.
+
 ## Version 1.2.0
 
 Added support for `skip` and `limit` options.
