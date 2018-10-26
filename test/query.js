@@ -73,5 +73,27 @@ describe('Browser client', () => {
       done: () => done(),
     });
   })
+
+  it('streams with invalid table', done => {
+    const client2 = clientLib.create({
+      apiKey: 'K83mWqONwXseeTBWxKTN8Wbi9kZUamNR',
+      apiSecret: 'fd6Duxl0xY0FWS7TpWybpcVk5oku4G9f',
+      url: 'https://api-eu.logtrust.com/search',
+    })
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: 'from asd123123 sel123123s aasdas123',
+      skip: 0,
+      limit: 100,
+      format: 'json/compact',
+    }
+    client2.stream(options, {
+      meta: () => null,
+      data: () => null,
+      error: () => done(),
+      done: () => done('Should throw error'),
+    });
+  })
 });
 
