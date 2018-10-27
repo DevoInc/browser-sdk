@@ -75,11 +75,6 @@ describe('Browser client', () => {
   })
 
   it('streams with invalid table', done => {
-    const client2 = clientLib.create({
-      apiKey: 'K83mWqONwXseeTBWxKTN8Wbi9kZUamNR',
-      apiSecret: 'fd6Duxl0xY0FWS7TpWybpcVk5oku4G9f',
-      url: 'https://api-eu.logtrust.com/search',
-    })
     const options = {
       dateFrom: from,
       dateTo: to,
@@ -88,7 +83,7 @@ describe('Browser client', () => {
       limit: 100,
       format: 'json/compact',
     }
-    client2.stream(options, {
+    client.stream(options, {
       meta: () => null,
       data: () => null,
       error: () => done(),
