@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.2.3
+
+Code cleanup.
+
 ## Version 1.2.2
 
 Patch for streaming returns 0.
