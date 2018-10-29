@@ -73,5 +73,22 @@ describe('Browser client', () => {
       done: () => done(),
     });
   })
+
+  it('streams with invalid table', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: 'from asd123123 sel123123s aasdas123',
+      skip: 0,
+      limit: 100,
+      format: 'json/compact',
+    }
+    client.stream(options, {
+      meta: () => null,
+      data: () => null,
+      error: () => done(),
+      done: () => done('Should throw error'),
+    });
+  })
 });
 
