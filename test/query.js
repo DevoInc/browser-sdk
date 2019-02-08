@@ -12,6 +12,10 @@ const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,met
 const from = new Date(Date.now() - 60 * 1000)
 const to = new Date()
 
+function isObject(o) {
+  return Object.getPrototypeOf(o) === isObject.OBJECTPROTO;
+}
+isObject.OBJECTPROTO = Object.getPrototypeOf({});
 
 describe('Browser client', () => {
 
@@ -88,6 +92,39 @@ describe('Browser client', () => {
       data: () => null,
       error: () => done(),
       done: () => done('Should throw error'),
+    });
+  })
+
+  it('queries in streaming mode - event is an object', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+    }
+    const cli = client.stream(options, {
+      meta: () => null,
+      data: (d) => {
+        isObject(d) ? done() : done(new Error('Data must be an object'));
+        cli.abort();
+      },
+      error: done
+    });
+  })
+
+  it('queries in streaming mode - event is an array', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+      mapMetadata: false,
+    }
+    const cli = client.stream(options, {
+      meta: () => null,
+      data: (d) => {
+        Array.isArray(d) ? done() : done(new Error('Data must be an array'));
+        cli.abort();
+      },
+      error: done
     });
   })
 });
