@@ -14,6 +14,7 @@
     "test": "mocha --reporter list --timeout 10000 test/*.js",
     "posttest": "npm run lint",
     "lint": "eslint '**/*.js'",
+    "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
     "postinstall": "mkdir -p dist",
     "link": "mkdir -p examples/node_modules/@devo && rm -f examples/node_modules/@devo/browser-sdk && ln -s ../../.. examples/node_modules/@devo/browser-sdk",
     "browserify": "npm run link && browserify ./examples/bundle-generator.js -o ./dist/devo-bundle.js",

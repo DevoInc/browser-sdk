@@ -500,6 +500,12 @@ Make sure that everything runs fine:
 npm test
 ```
 
+To run manual tests against our integration server run:
+
+```
+npm run manualtest
+```
+
 Note: you will need to place your [credentials](#credentials) in the file
 `$HOME/.devo.json`:
 just a JSON file that contains the same attributes as the

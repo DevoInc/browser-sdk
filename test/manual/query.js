@@ -3,7 +3,7 @@
 require('should');
 global.fetch = require('node-fetch');
 
-const clientLib = require('../lib/client.js');
+const clientLib = require('../../lib/client.js');
 const config = require('./config.js');
 
 const credentials = config.readCredentials()
@@ -21,8 +21,9 @@ describe('Browser client', () => {
       dateTo: to,
       query: QUERY,
     }
-    return client.query(options)
-      .then(result => result.object.length.should.be.a.Number())
+    return client.query(options).then(result => {
+      result.object.length.should.be.a.Number()
+    })
   });
 
   it('queries with invalid parameters', done => {
@@ -42,7 +43,9 @@ describe('Browser client', () => {
       query: QUERY,
       format: 'raw',
     }
-    return client.query(options)
+    return client.query(options).then(result => {
+      result.length.should.be.a.Number()
+    })
   });
 
   it('sends query with skip and limit', () => {
