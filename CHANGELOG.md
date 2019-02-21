@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.2.4
+
+Patch for OboeRequest public methods return this.
+
 ## Version 1.2.3
 
 Code cleanup.
