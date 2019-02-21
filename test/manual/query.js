@@ -15,40 +15,37 @@ const to = new Date()
 
 describe('Browser client', () => {
 
-  it('sends simple query', () => {
+  it('sends simple query', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
     }
-    return client.query(options).then(result => {
-      result.object.length.should.be.a.Number()
-    })
+    const result = await client.query(options)
+    result.object.length.should.be.a.Number()
   });
 
-  it('queries with invalid parameters', done => {
+  it('queries with invalid parameters', async() => {
     const options = {
       dateFrom: 'patata',
       dateTo: to,
       query: QUERY,
     }
-    client.query(options).then(() => done('Should reject invalid parameters'))
-      .catch(() => done())
+    await shouldFail(client.query(options))
   });
 
-  it('downloads raw query', () => {
+  it('downloads raw query', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
       format: 'raw',
     }
-    return client.query(options).then(result => {
-      result.length.should.be.a.Number()
-    })
+    const result = await client.query(options)
+    result.length.should.be.a.Number()
   });
 
-  it('sends query with skip and limit', () => {
+  it('sends query with skip and limit', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
@@ -56,28 +53,21 @@ describe('Browser client', () => {
       skip: 10,
       limit: 10,
     }
-    return client.query(options)
-      .then(result => {
-        result.object.length.should.be.a.Number()
-        result.object.length.should.be.below(11)
-      })
+    const result = await client.query(options)
+    result.object.length.should.be.a.Number()
+    result.object.length.should.be.below(11)
   });
 
-  it('queries in streaming mode', done => {
+  it('queries in streaming mode', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
     }
-    client.stream(options, {
-      meta: () => null,
-      data: () => null,
-      error: done,
-      done: () => done(),
-    });
+    await stream(options)
   })
 
-  it('streams with invalid table', done => {
+  it('streams with invalid table', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
@@ -86,12 +76,24 @@ describe('Browser client', () => {
       limit: 100,
       format: 'json/compact',
     }
+    await shouldFail(stream(options))
+  })
+});
+
+function stream(options) {
+  return new Promise((ok, ko) => {
     client.stream(options, {
       meta: () => null,
       data: () => null,
-      error: () => done(),
-      done: () => done('Should throw error'),
+      error: ko,
+      done: ok,
     });
   })
-});
+}
+
+function shouldFail(promise) {
+  return new Promise((ok, ko) => {
+    promise.then(ko).catch(ok)
+  })
+}
 
