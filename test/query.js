@@ -1,12 +1,16 @@
 'use strict';
 
 require('should');
+const http = require('http');
 global.fetch = require('node-fetch');
 
 const clientLib = require('../lib/client.js');
-const config = require('./config.js');
 
-const credentials = config.readCredentials()
+const credentials = {
+  url: 'http://127.0.0.1:3331/search',
+  apiKey: 'key',
+  apiSecret: 'secret',
+}
 const client = clientLib.create(credentials)
 const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,method'
 const from = new Date(Date.now() - 60 * 1000)
@@ -15,80 +19,102 @@ const to = new Date()
 
 describe('Browser client', () => {
 
-  it('sends simple query', () => {
+  it('sends simple query', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
     }
-    return client.query(options)
-      .then(result => result.object.length.should.be.a.Number())
+    const server = new TestServer({contentType: 'json', response: {
+      object: [1, 2],
+    }})
+    await server.start(3331)
+    const result = await client.query(options)
+    result.object.length.should.be.a.Number()
+    ;(server.getError() === null).should.be.true()
+    server.getUrl().should.equal('/search/query')
+    server.stop()
   });
 
-  it('queries with invalid parameters', done => {
-    const options = {
-      dateFrom: 'patata',
-      dateTo: to,
-      query: QUERY,
-    }
-    client.query(options).then(() => done('Should reject invalid parameters'))
-      .catch(() => done())
-  });
-
-  it('downloads raw query', () => {
+  it('downloads raw query', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
       format: 'raw',
     }
-    return client.query(options)
+    const server = new TestServer({contentType: 'text', response: 'pepito\n'})
+    await server.start(3331)
+    const result = await client.query(options)
+    result.length.should.be.a.Number()
+    server.stop()
   });
 
-  it('sends query with skip and limit', () => {
-    const options = {
-      dateFrom: from,
-      dateTo: to,
-      query: QUERY,
-      skip: 10,
-      limit: 10,
-    }
-    return client.query(options)
-      .then(result => {
-        result.object.length.should.be.a.Number()
-        result.object.length.should.be.below(11)
-      })
-  });
-
-  it('queries in streaming mode', done => {
+  it('queries in streaming mode', async() => {
     const options = {
       dateFrom: from,
       dateTo: to,
       query: QUERY,
     }
-    client.stream(options, {
-      meta: () => null,
-      data: () => null,
-      error: done,
-      done: () => done(),
-    });
-  })
-
-  it('streams with invalid table', done => {
-    const options = {
-      dateFrom: from,
-      dateTo: to,
-      query: 'from asd123123 sel123123s aasdas123',
-      skip: 0,
-      limit: 100,
-      format: 'json/compact',
-    }
-    client.stream(options, {
-      meta: () => null,
-      data: () => null,
-      error: () => done(),
-      done: () => done('Should throw error'),
-    });
+    const server = new TestServer({contentType: 'json', response: {}})
+    await server.start(3331)
+    await stream(options)
+    server.stop()
   })
 });
+
+class TestServer {
+  constructor(options) {
+    this._socket = null
+    this._error = null
+    if (typeof options.response == 'object') {
+      this._response = JSON.stringify(options.response)
+    } else {
+      this._response = options.response
+    }
+    this._server = http.createServer(socket => {
+      this._socket = socket;
+      this._socket.on('error', error => this._storeError(error))
+    })
+    this._server.on('error', error => this._storeError(error))
+    this._server.on('request', (request, response) => {
+      this._url = request.url
+      response.setHeader('content-type', options.contentType || 'text')
+      response.end(this._response)
+    })
+    this._server.unref()
+  }
+
+  getError() {
+    return this._error
+  }
+
+  getUrl() {
+    return this._url
+  }
+
+  start(port) {
+    return new Promise(ok => this._server.listen(port, ok))
+  }
+
+  stop() {
+    this._server.close()
+  }
+
+  _storeError(error) {
+    console.error('Error %s', error)
+    this._error = error
+  }
+}
+
+function stream(options) {
+  return new Promise((ok, ko) => {
+    client.stream(options, {
+      meta: () => null,
+      data: () => null,
+      error: ko,
+      done: ok,
+    });
+  })
+}
 

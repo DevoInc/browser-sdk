@@ -2,7 +2,7 @@
 
 require('should');
 
-const clientLib = require('../lib/client.js');
+const clientLib = require('../../lib/client.js');
 const config = require('./config.js');
 
 const credentials = config.readCredentials()
