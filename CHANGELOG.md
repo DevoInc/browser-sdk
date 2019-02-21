@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.2.5
+
+Do not use integration server for tests by default.
+
 ## Version 1.2.4
 
 Patch for OboeRequest public methods return this.
