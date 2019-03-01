@@ -411,6 +411,38 @@ The server will reply with the task ID,
 and you can query with this ID for completion.
 See below for details on task management.
 
+#### `mapMetadata`
+*(only for streaming)*
+
+Optional parameter to avoid that events will mapped with its columns and send to `onData` callback the raw event. Default value: true
+
+Example:
+
+**mapMetadata: *true***
+```
+meta:
+  { colA: { index: 0, type: 'int8' }}
+rawData:
+  [[0], [1]]
+onData(ev): 
+  ev -> { colA: 0 }
+  ev -> { colA: 1 }
+  ev -> { colA: 2}
+```
+
+**mapMetadata: *false***
+```
+meta:
+  { colA: { index: 0, type: 'int8' }}
+rawData:
+  [[0], [1]]
+onData(ev): 
+  ev -> [0]
+  ev -> [1]
+  ev -> [2]
+```
+
+
 ## Task Management
 
 The client is also used for task management.
