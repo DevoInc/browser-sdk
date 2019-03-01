@@ -108,7 +108,8 @@ describe('Browser client', () => {
           error: done
       })
       .catch(done);
-  })
+    })
+  });
 });
 
 class TestServer {
