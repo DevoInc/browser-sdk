@@ -72,13 +72,23 @@ describe('Browser client', () => {
       dateTo: to,
       query: QUERY,
     }
-    const server = new TestServer({contentType: 'json', response: {}})
+    const server = new TestServer({
+      contentType: 'json',
+      response: {
+        object: {
+          m: { colA: { index: 0, type: 'int4' }},
+          d: [[0], [1]]
+        }
+      }
+    })
+    let doDone = false;
     server.start(3331)
       .then(() => {
         const cli = client.stream(options, {
           meta: () => null,
           data: (d) => {
-            isObject(d) ? done() : done(new Error('Data should be an object'));
+            if (doDone === true) return;
+            isObject(d) ? (doDone = true) && done() : done(new Error('Data should be an object'));
             cli.abort();
             server.stop();
           },
@@ -95,20 +105,30 @@ describe('Browser client', () => {
       query: QUERY,
       mapMetadata: false,
     }
+    let doDone = false;
 
-    const server = new TestServer({contentType: 'json', response: {}})
+    const server = new TestServer({
+      contentType: 'json',
+      response: {
+        object: {
+          m: { colA: { index: 0, type: 'int4' }},
+          d: [[0], [1]]
+        }
+      }
+    })
     server.start(3331)
       .then(() => {
         const cli = client.stream(options, {
           meta: () => null,
           data: (d) => {
-            Array.isArray(d) ? done() : done(new Error('Data should be an array'));
+            if (doDone === true) return;
+            Array.isArray(d) ? (doDone = true) && done() : done(new Error('Data should be an array'));
             cli.abort();
+            server.stop();
           },
           error: done
-      })
-      .catch(done);
-    })
+        })
+      }).catch(done);
   });
 });
 
