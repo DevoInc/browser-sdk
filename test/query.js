@@ -65,6 +65,50 @@ describe('Browser client', () => {
     await stream(options)
     server.stop()
   })
+
+  it('queries in streaming mode - event is an object', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+    }
+    const server = new TestServer({contentType: 'json', response: {}})
+    server.start(3331)
+      .then(() => {
+        const cli = client.stream(options, {
+          meta: () => null,
+          data: (d) => {
+            isObject(d) ? done() : done(new Error('Data should be an object'));
+            cli.abort();
+            server.stop();
+          },
+          error: done
+        });
+      })
+      .catch(done);
+  })
+
+  it('queries in streaming mode - event is an array', done => {
+    const options = {
+      dateFrom: from,
+      dateTo: to,
+      query: QUERY,
+      mapMetadata: false,
+    }
+
+    const server = new TestServer({contentType: 'json', response: {}})
+    server.start(3331)
+      .then(() => {
+        const cli = client.stream(options, {
+          meta: () => null,
+          data: (d) => {
+            Array.isArray(d) ? done() : done(new Error('Data should be an array'));
+            cli.abort();
+          },
+          error: done
+      })
+      .catch(done);
+  })
 });
 
 class TestServer {
@@ -120,39 +164,5 @@ function stream(options) {
       done: ok,
     });
   })
-
-  it('queries in streaming mode - event is an object', done => {
-    const options = {
-      dateFrom: from,
-      dateTo: to,
-      query: QUERY,
-    }
-    const cli = client.stream(options, {
-      meta: () => null,
-      data: (d) => {
-        isObject(d) ? done() : done(new Error('Data must be an object'));
-        cli.abort();
-      },
-      error: done
-    });
-  })
-
-  it('queries in streaming mode - event is an array', done => {
-    const options = {
-      dateFrom: from,
-      dateTo: to,
-      query: QUERY,
-      mapMetadata: false,
-    }
-    const cli = client.stream(options, {
-      meta: () => null,
-      data: (d) => {
-        Array.isArray(d) ? done() : done(new Error('Data must be an array'));
-        cli.abort();
-      },
-      error: done
-    });
-  })
-});
 }
 
