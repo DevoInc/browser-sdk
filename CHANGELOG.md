@@ -2,9 +2,33 @@
 
 Change log.
 
+## Version 1.2.5
+
+Do not use integration server for tests by default.
+
+## Version 1.2.4
+
+Patch for OboeRequest public methods return this.
+
+## Version 1.2.3
+
+Code cleanup.
+
+## Version 1.2.2
+
+Patch for streaming returns 0.
+
+## Version 1.2.1
+
+Patch the case where streaming returns 200 but status contains 500.
+
+## Version 1.2.0
+
+Added support for `skip` and `limit` options.
+
 ## Version 1.1.2
 
-Removed mention to HTTP tokens.
+Removed mention of HTTP tokens.
 
 ## Version 1.1.1
 
