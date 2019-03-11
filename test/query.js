@@ -13,6 +13,7 @@ const credentials = {
 }
 const client = clientLib.create(credentials)
 const QUERY = 'from demo.ecommerce.data select eventdate,protocol,statusCode,method'
+const TABLE = 'demo.ecommerce.data'
 const from = new Date(Date.now() - 60 * 1000)
 const to = new Date()
 
@@ -63,7 +64,31 @@ describe('Browser client', () => {
     const server = new TestServer({contentType: 'json', response: {}})
     await server.start(3331)
     await stream(options)
-    server.stop()
+    return server.stop()
+  })
+
+  it('table schema (table exists)', async () => {
+    const object = [
+      {
+        fieldName: 'eventdate',
+        type: 'timestamp'
+      },
+      {
+        fieldName: 'clientIpAddress',
+        type: 'ip4'
+      }
+    ];
+    const server = new TestServer({
+      contentType: 'json',
+      response: {
+        object,
+      }
+    });
+    await server.start(3331);
+    const result = await client.table(TABLE);
+    const isEqual = JSON.stringify(result.object) === JSON.stringify(object);
+    isEqual.should.be.exactly(true);
+    server.stop();
   })
 
   it('queries in streaming mode - event is an object', done => {

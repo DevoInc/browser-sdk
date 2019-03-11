@@ -312,6 +312,22 @@ client.download({
 }).catch(error => console.error('Download failed: %s', error))
 ```
 
+### Table
+
+With `client.table(tableName)` method you be able to obtain a table structure (field name and its type).
+It also returns a promise to catch for errors.
+
+Example:
+
+```js
+const devo = require('@devo/browser-sdk')
+const client = devo.client(credentials)
+client.table('demo.ecommerce.data')
+  .then(result => console.log(result.object))
+  .catch(error => console.error('Request failed: %s', error))
+```
+
+
 ### Query Options
 
 All query functions have the following attributes in the `options` parameter.
