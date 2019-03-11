@@ -64,19 +64,18 @@ describe('Browser client', () => {
     const server = new TestServer({contentType: 'json', response: {}})
     await server.start(3331)
     await stream(options)
-    server.stop()
+    return server.stop()
   })
 
-  
   it('table schema (table exists)', async () => {
     const object = [
       {
-        "fieldName": "eventdate",
-        "type": "timestamp"
+        fieldName: 'eventdate',
+        type: 'timestamp'
       },
       {
-        "fieldName": "clientIpAddress",
-        "type": "ip4"
+        fieldName: 'clientIpAddress',
+        type: 'ip4'
       }
     ];
     const server = new TestServer({
@@ -86,7 +85,9 @@ describe('Browser client', () => {
       }
     });
     await server.start(3331);
-    await client.table(TABLE);
+    const result = await client.table(TABLE);
+    const isEqual = JSON.stringify(result.object) === JSON.stringify(object);
+    isEqual.should.be.exactly(true);
     server.stop();
   })
 

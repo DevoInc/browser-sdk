@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.3.0
+
+Added `table` method that allows to obtain a table's structure.
+
 ## Version 1.2.6
 
 Avoid to map metadata on streaming with the opt-in parameter *mapMetadata*.
