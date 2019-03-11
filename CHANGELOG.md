@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.2.6
+
+Avoid to map metadata on streaming with the opt-in parameter *mapMetadata*.
+
 ## Version 1.2.5
 
 Do not use integration server for tests by default.
