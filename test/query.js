@@ -147,7 +147,7 @@ describe('Browser client', () => {
           meta: () => null,
           data: (d) => {
             if (doDone === true) return;
-            Array.isArray(d) ? (doDone = true) && done() : done(new Error('Data should be an array'));
+            Array.isArray(JSON.parse(d)) ? (doDone = true) && done() : done(new Error('Data should be an array'));
             cli.abort();
             server.stop();
           },
