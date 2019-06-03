@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.3.1
+
+Fixed Oboe.js memory leak
+
 ## Version 1.3.0
 
 Added `table` method that allows to obtain a table's structure.
