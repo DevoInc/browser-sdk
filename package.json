@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "@devo/js-helper": "^1.3.0",
-    "node-fetch": "2.0.0",
+    "node-fetch": "2.6.1",
     "oboe": "2.1.4"
   },
   "devDependencies": {
