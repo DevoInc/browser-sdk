@@ -1,5 +1,3 @@
-[![Build Status](https://api.travis-ci.com/DevoInc/browser-sdk.svg)](http://travis-ci.com/DevoInc/browser-sdk)
-
 # Devo Browser SDK
 
 This is the SDK to access Devo directly from client code in browsers.
