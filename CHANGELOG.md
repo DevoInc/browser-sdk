@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.3.3
+
+Remove clutter from package
+
 ## Version 1.3.2
 
 Remove travis-ci pipeline and .npmrc
