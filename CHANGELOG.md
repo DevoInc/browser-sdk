@@ -2,6 +2,10 @@
 
 Change log.
 
+## Version 1.3.2
+
+Remove travis-ci pipeline and .npmrc
+
 ## Version 1.3.1
 
 Upgraded dependencies in order to remove vulnerabilities
