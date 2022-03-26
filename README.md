@@ -3,7 +3,7 @@
 This is the SDK to access Devo directly from client code in browsers.
 It can be used to query Devo, and to manage deferred tasks.
 
-A modern Node.js installation (version 8 or later) is required.
+A modern Node.js installation (version 14 or later) is required.
 
 ## Quick Start
 
@@ -18,12 +18,12 @@ Install all dependencies:
 
 ```
 cd browser-sdk
-npm install
+npm ci
 ```
 
-Run the browserify task:
+Run the webpack task:
 
-    $ npm run browserify
+    $ npm run webpack:prod
 
 Now include the generated file `dist/devo-bundle.js` directly in your HTML pages.
 You can also minify it or embed it in your software.
@@ -104,8 +104,8 @@ cd browser-sdk
 npm install
 ```
 
-Place your Devo [credentials](#Credentials) in a file called
-`examples/credentials.json`.
+Place your Devo [credentials](#Credentials) in the root of the project
+`credentials.json`.
 It should look like this:
 
 ```json
@@ -118,29 +118,14 @@ It should look like this:
 
 Then run the task:
 
-    $ npm run examples
+    $ npm run webpack:dev
 
 This will generate the examples with the right credentials:
-[browserify query demo](examples/browserify-query.html) -
-[code](examples/browserify-query.js)
-and
-[browserify task demo](examples/browserify-task.html) -
-[code](examples/browserify-task.js).
-Open these pages in a browser to try out the capabilities in action.
-
-## Browserify
-
-If you are going to do any serious work with the Devo SDK
-you will probably want to browserify your code,
-instead of using the generated bundle.
+Open this page in a browser in localhost to try out the capabilities in action.
 
 ### Installation
 
-First install browserify:
 
-``` sh
-npm i -g browserify
-```
 
 To install the SDK use `npm`:
 
@@ -148,7 +133,7 @@ To install the SDK use `npm`:
 
 Place this code including your
 [credentials](#Credentials)
-in a file called e.g. `sample.js`:
+in a file called e.g. `credentials.json`:
 
 ``` js
 const devo = require('@devo/browser-sdk')
@@ -157,15 +142,12 @@ const client = devo.client(credentials)
 // do something with the clients
 ```
 
-Then you can run `browserify` on `sample.js` and generate a new file `mybundle.js`:
-
 ``` sh
-browserify sample.js -o mybundle.js
+npm run webpack:prod
 ```
 
-Note that in this case it is not necessary to include `dist/devo-bundle.js`,
 
-And finally include the generated file `mybundle.js` in your web page:
+And finally include the generated file in ```dist/``` in your web page:
 
 ```
 <script src="mybundle.js"></script>
@@ -232,7 +214,9 @@ Example result object:
 
 Instead of receiving all results in the promise,
 they can be streamed back to the client.
-Use the function `client.stream(options, callbacks)` to stream back query results.
+
+  * Use the function `client.streamFetch(options, callbacks)` to stream back query results in array filled with multiple data objects, parsed in chunks.
+
 It will accept an options parameter (see below)
 and a callbacks parameter that will contain four callbacks:
 
@@ -240,6 +224,8 @@ and a callbacks parameter that will contain four callbacks:
 * `meta`: optional callback to receive a custom object with field definitions.
 * `error`: optional callback to receive any errors.
 * `done`: optional callback to invoke once the streaming has finished.
+* `progress`: optional callback to invoke every time a progress event is sent.
+* `abort`: optional callback to invoke when query is aborted from client.
 
 The first `data` callback will recieve an object with the data from a row with several fields.
 Example data:
@@ -277,7 +263,7 @@ Full example:
 ``` js
 const devo = require('@devo/browser-sdk')
 const client = devo.client(credentials)
-client.stream({
+client.streamFetch({
   query: 'from demo.ecommerce.data select eventdate,protocol,statusCode,method',
   dateFrom: new Date(),
   dateTo: -1
@@ -285,7 +271,9 @@ client.stream({
   meta: data => console.log('Received metadata: %s', data),
   data: data => console.log('Received data: %s', data),
   error: error => console.error('Query failed: %s', error),
-  done: () => console.log('Finished receiving query results')
+  done: () => console.log('Finished receiving query results'),
+  progress: () => console.log('Progress event is sent'),
+  abort: () => console.log('Abort action made')
 })
 ```
 
@@ -357,7 +345,6 @@ same [spec](http://jsonlines.org/).
 * `xls`: [Microsoft Excel format](https://en.wikipedia.org/wiki/Microsoft_Excel#File_formats).
 * `csv`: [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values).
 * `tsv`: [tab-separated values](https://en.wikipedia.org/wiki/Tab-separated_values).
-* `raw`: returns the raw log files.
 
 Default is `json`.
 When streaming the format is always `json/compact`.
@@ -553,21 +540,18 @@ npm run manualtest
 ```
 
 Note: you will need to place your [credentials](#credentials) in the file
-`$HOME/.devo.json`:
+`/credentials.json`:
 just a JSON file that contains the same attributes as the
 [initialization](#initialization) parameter.
-If needed you can also use environment variables.
-See the
-[Node.js
-project](https://github.com/devoinc/nodejs-sdk/docs/client.md#client-credentials)
-for more details.
+If needed you can also use environment variables with the file `$HOME/.devo.json`. In the case you have the file `credentials.json` in the root of your project, this will replace the enviroment variables.
+ See the Node.js project for more details.
 
 And start playing!
 Pull requests are welcome ☺
 
 # Licensed under The MIT License
 
-(C) 2018 Devo, Inc.
+(C) 2022 Devo, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the 'Software'), to deal in

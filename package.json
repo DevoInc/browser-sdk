@@ -1,6 +1,6 @@
 {
-  "name": "@devo/browser-sdk",
-  "version": "1.3.3",
+  "name": "@devo/browser-sdk-dashboard",
+  "version": "2.0.0",
   "description": "Devo browser SDK",
   "author": "Devo Dev Team",
   "eslintConfig": {
@@ -15,18 +15,26 @@
     "lib/"
   ],
   "scripts": {
-    "test": "mocha --reporter list --timeout 10000 test/*.js",
+    "test": "nyc --reporter=lcov npm run mocha",
+    "mocha": "mocha --ui bdd --require should --reporter mocha-sonarqube-reporter --reporter-options output=test-report.xml 'test/**/*.test.js'",
+    "test:debug": "mocha --inspect-brk --reporter spec --timeout 20000 test/*.js",
     "posttest": "npm run lint",
-    "lint": "eslint '**/*.js'",
+    "lint": "eslint 'lib/**/*.js'",
+    "release:prerelease": "npm version prerelease",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "release:patch": "npm version patch",
+    "release:publish": "npm publish",
+    "release:preminor": "npm version preminor --preid=alpha",
     "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
     "postinstall": "mkdir -p dist",
-    "link": "mkdir -p examples/node_modules/@devo && rm -f examples/node_modules/@devo/browser-sdk && ln -s ../../.. examples/node_modules/@devo/browser-sdk",
-    "browserify": "npm run link && browserify ./examples/bundle-generator.js -o ./dist/devo-bundle.js",
-    "examples": "npm run link && browserify ./examples/browserify-query.js -o ./examples/query-bundle.js && browserify ./examples/browserify-task.js -o ./examples/task-bundle.js"
+    "webpack:prod": "webpack --config ./webpack/webpack.prod.js",
+    "webpack:dev": "webpack-dev-server --watch-content-base -d --progress --config ./webpack/webpack.dev.js",
+    "dist": "npm run webpack:prod"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:devoinc/browser-sdk.git"
+    "url": "https://gitlab.devo.internal/dashcope/browser-sdk.git"
   },
   "keywords": [
     "Devo",
@@ -37,14 +45,48 @@
   ],
   "dependencies": {
     "@devo/js-helper": "1.6.2",
+    "abort-controller": "^3.0.0",
+    "detect-browser": "^4.5.1",
+    "fetch-readablestream": "^0.2.0",
     "node-fetch": "2.6.7",
-    "oboe": "2.1.4"
+    "web-streams-polyfill": "^2.0.3"
   },
   "devDependencies": {
-    "browserify": "^12.0.1",
-    "eslint": "^4.5.0",
-    "mocha": "^3.5.0",
-    "should": "^12.0.0"
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.4.0",
+    "@babel/runtime": "^7.4.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^3.0.0",
+    "eslint": "^6.0.1",
+    "file-loader": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "mocha": "^6.1.4",
+    "mocha-each": "^2.0.1",
+    "mocha-jsdom": "^2.0.0",
+    "mocha-sonarqube-reporter": "^1.0.2",
+    "msw": "^0.22.3",
+    "nyc": "^15.1.0",
+    "regenerator-runtime": "^0.13.2",
+    "sass-loader": "^7.0.1",
+    "should": "^13.2.3",
+    "sinon": "^9.2.1",
+    "sonar-scanner": "^3.1.0",
+    "style-loader": "^0.23.1",
+    "uglify-es": "3.3.9",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=7"
+  }
 }

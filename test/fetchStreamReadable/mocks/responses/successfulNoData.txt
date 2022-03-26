@@ -1,0 +1,2 @@
+{"m":{"eventdate":{"type":"timestamp","index":0},"username":{"type":"str","index":1},"type":{"type":"str","index":2}},"metadata":[{"name":"eventdate","type":"timestamp"},{"name":"username","type":"str"},{"name":"type","type":"str"}]} 
+
