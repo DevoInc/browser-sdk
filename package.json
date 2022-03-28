@@ -1,6 +1,6 @@
 {
-  "name": "@devo/browser-sdk-dashboard",
-  "version": "2.0.0",
+  "name": "@devoinc/browser-sdk-dashboard",
+  "version": "3.0.0",
   "description": "Devo browser SDK",
   "author": "Devo Dev Team",
   "eslintConfig": {
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.devo.internal/dashcope/browser-sdk.git"
+    "url": "https://github.com/DevoInc/browser-sdk"
   },
   "keywords": [
     "Devo",
@@ -44,7 +44,7 @@
     "LinQ"
   ],
   "dependencies": {
-    "@devo/js-helper": "1.6.2",
+    "@devoinc/js-helper": "2.0.0",
     "abort-controller": "^3.0.0",
     "detect-browser": "^4.5.1",
     "fetch-readablestream": "^0.2.0",
