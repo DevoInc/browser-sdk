@@ -6,7 +6,7 @@ Change log.
 
 * Replaced `stream` for `streamFetch`, this method, to stream back query, returns data in arrays filled with multiple data objects that have been parsed in chunks. With this change we have noticeably improved the performance, and also made code more secure and efficient.
 
-* Now is required to use a node version greater than 14.0.0 and npm version greater than 7.0.0
+* Now is required to use Node.js version &ge; 14.0.0 and npm version &ge; 7.0.0
 
 
 ## Version 1.3.3
