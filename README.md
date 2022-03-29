@@ -21,6 +21,19 @@ cd browser-sdk
 npm ci
 ```
 
+Run the webpack task:
+
+    $ npm run webpack:prod
+
+Now include the generated file `dist/devo-bundle.js` directly in your HTML pages.
+You can also minify it or embed it in your software.
+From your code invoke `devo` as a global:
+
+```
+const client = devo.client(credentials);
+// do something with the client
+```
+
 ## Credentials
 
 There are several ways to use the Devo SDK in the browser.
@@ -103,12 +116,44 @@ It should look like this:
 }
 ```
 
+Then run the task:
+
+    $ npm run webpack:dev
+
+This will generate the examples with the right credentials:
+Open this page in a browser in localhost to try out the capabilities in action.
 
 ### Installation
+
+
 
 To install the SDK use `npm`:
 
     $ npm install @devo/browser-sdk
+
+Place this code including your
+[credentials](#Credentials)
+in a file called e.g. `credentials.json`:
+
+``` js
+const devo = require('@devo/browser-sdk')
+// create object with credentials
+const client = devo.client(credentials)
+// do something with the clients
+```
+
+``` sh
+npm run webpack:prod
+```
+
+
+And finally include the generated file in ```dist/``` in your web page:
+
+```
+<script src="mybundle.js"></script>
+```
+
+API usage follows.
 
 ## Querying
 
