@@ -2,7 +2,7 @@
 
 Change log.
 
-## Version 2.0.0
+## Version 3.0.0
 
 * Replaced `stream` for `streamFetch`, this method, to stream back query, returns data in arrays filled with multiple data objects that have been parsed in chunks. With this change we have noticeably improved the performance, and also made code more secure and efficient.
 
