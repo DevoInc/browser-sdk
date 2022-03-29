@@ -2,24 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Devo Browser SDK Demos</title>
-  <link rel="stylesheet" href="css/main.css" />
+  <title>Devo SDK: Simple Query Demo</title>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="icon" type="image/x-icon" />
 </head>
 <body>
-  <h1>Devo Browser SDK Demos</h1>
+<div id="outer">
+  <div id="inner_fixed">
+    <h1>Devo SDK: Simple Query Demo</h1>
 
-  <p>
-  Run all the demos from here.
-  </p>
+    <div style="margin-bottom: 20px; display: flex; width: 100%;">
+      <label for="streamMethod">Method</label>
+      <select id="streamMethod" name="streamMethod">
+        <option>Fetch stream Fixed</option>
+        <option>Fetch stream Continuous</option>
+      </select>
+      <label for="responseRowFormat">Response Format</label>
+      <select id="responseRowFormat" name="responseRowFormat">
+        <option selected>Raw data</option>
+        <option>Object data</option>
+      </select>
+      <label>
+        From
+        <input type="datetime-local" name="from" id="from-input">
+      </label>
+      <label>
+        To
+        <input type="datetime-local" name="to" id="to-input">
+      </label>
+      <label for="query-text">
+        Query
+      </label>
+      <input type="text" name="query-text" id="query-text" style="flex: 1;">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <button id="btn_launch">Launch Query</button>
+      <button id="btn_cancel">Cancel Query</button>
+    </div>
+    <div>
+      <span>
+      <input type="checkbox" id="checkToggleMSW" name="checkToggleMSW" style="margin: 0;">
+      <label for="checkToggleMSW" title="Returns a fake response when enabled">
+        Toggle mock network layer (ignores query and date range)
+      </label>
+    </span>
+    </div>
+    <hr>
+  </div>
 
-  <ul>
-    <!--
-    <li><a href="simple-query.html">Simple query demo.</a></li>
-    <li><a href="simple-task.html">Simple task demo.</a></li>
-    -->
-    <li><a href="browserify-query.html">Browserify query demo.</a></li>
-    <li><a href="browserify-task.html">Browserify task demo.</a></li>
-  </ul>
+  <div class="inner_remaining">
+    <div id="lds-roller-wrapper" style="margin: 0 auto; width: 145px;
+display:none; padding: 300px 0;">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div id="msg" style="margin: 40px"></div>
+    <div style="margin: 20px">
+      <div id="myGrid" style="height: 800px;width: 1000px; display:none;"
+           class="ag-theme-balham"></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<!--<script src="./query-bundle.js"></script>-->
+<script src="./BrowserSdk.js"></script>
+<script src="./examples.js"></script>
+
+<script>
+
+  $(function () {
+    $.getJSON('credentials.json', function (credentials) {
+      examples.queryExample.registerListeners(BrowserSdk, credentials);
+    });
+
+  });
+</script>
 
 </body>
 </html>

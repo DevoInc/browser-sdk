@@ -1,0 +1,22 @@
+{
+  "status": 0,
+  "cid": "f5cf58bbd7f3",
+  "timestamp": 1610957763347,
+  "object": {
+    "status": "STOPPED",
+    "error": [
+      "Error In Query fake.server.StaticException: Unknown table `siem.logtrust.malote.wrong'"
+    ],
+    "id": "65c33404-9a7d-4565-8f3f-7f8e972abdeb",
+    "eventGenerated": 0,
+    "eventsSent": 0,
+    "lastDatetime": 0,
+    "type": "s3",
+    "friendlyName": "s3_xjfmDGM9lU",
+    "query": "from siem.logtrust.malote.wrong select *",
+    "cid": "e1495807c958",
+    "owner": "fake@email.com",
+    "table": "siem.logtrust.malote.query2",
+    "domain": "self"
+  }
+}

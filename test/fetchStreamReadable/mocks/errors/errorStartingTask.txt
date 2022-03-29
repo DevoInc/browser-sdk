@@ -1,0 +1,6 @@
+{
+    "msg": "Unable to Start Task: Task Key Duplicate: test_error",
+    "code": 500,
+    "timestamp": 1611837486023,
+    "cid": "ff12411a39b0"
+}

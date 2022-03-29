@@ -1,0 +1,12 @@
+{
+    "msg": "Error Launching Query",
+    "code": 500,
+    "timestamp": 1613666187934,
+    "cid": "b5f1ebe353a4",
+    "context": {
+        "message": "Unknown table `siem.logtrust.malote.query2'",
+        "code": "208",
+        "kind": "MISSING_RESOURCE",
+        "recoverable": "MANUAL"
+    }
+}
