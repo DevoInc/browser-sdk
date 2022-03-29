@@ -1,6 +1,6 @@
 {
-  "name": "@devo/browser-sdk",
-  "version": "1.3.3",
+  "name": "@devoinc/browser-sdk",
+  "version": "2.0.0",
   "description": "Devo browser SDK",
   "author": "Devo Dev Team",
   "eslintConfig": {
@@ -36,7 +36,7 @@
     "LinQ"
   ],
   "dependencies": {
-    "@devo/js-helper": "1.6.2",
+    "@devoinc/js-helper": "^2.0.0",
     "node-fetch": "2.6.7",
     "oboe": "2.1.4"
   },
