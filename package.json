@@ -27,7 +27,10 @@
     "release:publish": "npm publish",
     "release:preminor": "npm version preminor --preid=alpha",
     "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
-    "postinstall": "mkdir -p dist"
+    "postinstall": "mkdir -p dist",
+    "link": "mkdir -p examples/node_modules/@devo && rm -f examples/node_modules/@devo/browser-sdk && ln -s ../../.. examples/node_modules/@devo/browser-sdk",
+    "browserify": "npm run link && browserify ./examples/bundle-generator.js -o ./dist/devo-bundle.js",
+    "examples": "npm run link && browserify ./examples/browserify-query.js -o ./examples/query-bundle.js && browserify ./examples/browserify-task.js -o ./examples/task-bundle.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +52,7 @@
     "web-streams-polyfill": "^2.0.3"
   },
   "devDependencies": {
+    "browserify": "^17.0.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "file-loader": "^4.0.0",

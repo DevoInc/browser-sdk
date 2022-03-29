@@ -1,7 +1,7 @@
 'use strict';
 
 const devo = require('@devo/browser-sdk')
-const credentials = require('./credentials.json')
+const credentials = require('../credentials.json')
 
 const options = {
   "dateFrom": "2018-07-02T11:00:00Z",

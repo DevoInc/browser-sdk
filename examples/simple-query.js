@@ -1,10 +1,8 @@
 'use strict';
 
-const credentials = {
-  url: 'https://api-us.devo.com/search',
-  apiKey: 'your-api-key',
-  apiSecret: 'your-api-secret',
-}
+
+const credentials = require('../credentials.json')
+
 const options = {
   "dateFrom": "2018-07-02T11:00:00Z",
   "dateTo": "2018-07-02T11:30:30Z",
