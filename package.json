@@ -27,10 +27,7 @@
     "release:publish": "npm publish",
     "release:preminor": "npm version preminor --preid=alpha",
     "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
-    "postinstall": "mkdir -p dist",
-    "webpack:prod": "webpack --config ./webpack/webpack.prod.js",
-    "webpack:dev": "webpack-dev-server --watch-content-base -d --progress --config ./webpack/webpack.dev.js",
-    "dist": "npm run webpack:prod"
+    "postinstall": "mkdir -p dist"
   },
   "repository": {
     "type": "git",
@@ -52,19 +49,9 @@
     "web-streams-polyfill": "^2.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.4.0",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.4.0",
-    "@babel/runtime": "^7.4.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "file-loader": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "jest-sonar-reporter": "^2.0.0",
     "mocha": "^6.1.4",
     "mocha-each": "^2.0.1",
     "mocha-jsdom": "^2.0.0",
@@ -72,17 +59,9 @@
     "msw": "^0.22.3",
     "nyc": "^15.1.0",
     "regenerator-runtime": "^0.13.2",
-    "sass-loader": "^7.0.1",
     "should": "^13.2.3",
     "sinon": "^9.2.1",
-    "sonar-scanner": "^3.1.0",
-    "style-loader": "^0.23.1",
-    "uglify-es": "3.3.9",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-merge": "^4.1.2"
+    "style-loader": "^0.23.1"
   },
   "license": "MIT",
   "engines": {
