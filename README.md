@@ -54,7 +54,7 @@ An object containing access credentials must be passed to the constructor.
 Example:
 
 ``` js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 const client = devo.client({
   url: 'https://api-us.logtrust.com/search',
   apiKey: 'your-api-key',
@@ -129,14 +129,14 @@ Open this page in a browser in localhost to try out the capabilities in action.
 
 To install the SDK use `npm`:
 
-    $ npm install @devo/browser-sdk
+    $ npm install @devoinc/browser-sdk
 
 Place this code including your
 [credentials](#Credentials)
 in a file called e.g. `credentials.json`:
 
 ``` js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 // create object with credentials
 const client = devo.client(credentials)
 // do something with the clients
@@ -169,7 +169,7 @@ and will return a promise that will resolve to the query results.
 Example:
 
 ``` js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 const client = devo.client(credentials)
 client.query({
   query: 'from demo.ecommerce.data select eventdate,protocol,statusCode,method',
@@ -261,7 +261,7 @@ where `type` can be one of the following:
 Full example:
 
 ``` js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 const client = devo.client(credentials)
 client.streamFetch({
   query: 'from demo.ecommerce.data select eventdate,protocol,statusCode,method',
@@ -288,7 +288,7 @@ It also returns a promise to catch for errors.
 Example:
 
 ``` js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 const client = devo.client(credentials)
 client.download({
   query: 'from demo.ecommerce.data select eventdate,protocol,statusCode,method',
@@ -306,7 +306,7 @@ It also returns a promise to catch for errors.
 Example:
 
 ```js
-const devo = require('@devo/browser-sdk')
+const devo = require('@devoinc/browser-sdk')
 const client = devo.client(credentials)
 client.table('demo.ecommerce.data')
   .then(result => console.log(result.object))
