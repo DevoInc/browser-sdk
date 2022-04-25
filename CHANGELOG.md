@@ -2,6 +2,11 @@
 
 Change log.
 
+## Unversioned
+Delete unused files:
+* lib/oboeRequest.js
+* test/query.js
+
 ## Version 3.0.1
 
 Fix outdated README content
