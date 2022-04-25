@@ -4,7 +4,7 @@ require('should');
 const http = require('http');
 global.fetch = require('node-fetch');
 
-const clientLib = require('../../lib/client.js');
+const clientLib = require('../lib/client.js');
 
 const credentials = {
   url: 'http://127.0.0.1:3331/search',

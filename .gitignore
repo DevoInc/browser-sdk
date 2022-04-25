@@ -8,3 +8,7 @@ credentials.json
 coverage/
 .nyc_output
 test-report.json
+
+# stryker temp files
+.stryker-tmp
+reports/

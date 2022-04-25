@@ -3,9 +3,9 @@
 const should = require('should');
 const forEach = require('mocha-each');
 
-const { homogenizeErrorFormat,  createErrorResponse } = require('../../lib/fetchStreamReadable/parser/parserUtils');
+const { homogenizeErrorFormat,  createErrorResponse } = require('../lib/fetchStreamReadable/parser/parserUtils');
 
-const errors = require('./mocks/errorsResponses.js')
+const errors = require('./fetchStreamReadable/mocks/errorsResponses.js')
 describe('parser', () => {
   describe('parserUtils', () => {
     describe('homogenizeErrorFormat', () => {

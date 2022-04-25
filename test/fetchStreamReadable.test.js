@@ -4,9 +4,9 @@ require('should');
 const forEach = require('mocha-each');
 const { spy, assert } = require('sinon');
 const { JSDOM } = require('jsdom');
-const { states } = require('../../lib/fetchStreamReadable/parser/chunksParser');
-const { processStream, processReader } = require('../../lib/fetchStreamReadable/fetchStreamReadable');
-const { MockReader } = require('./MockUtils.js');
+const { states } = require('../lib/fetchStreamReadable/parser/chunksParser');
+const { processStream, processReader } = require('../lib/fetchStreamReadable/fetchStreamReadable');
+const { MockReader } = require('./fetchStreamReadable/MockUtils.js');
 const { performance } = require('perf_hooks');
 global.performance = performance; // performance polyfill for node
 this.processReader = processReader;
@@ -14,11 +14,11 @@ this.processReader = processReader;
 this.processStream = processStream.bind(this);
 const {
   successfulComplete1,
-} = require('./mocks/responses.js');
+} = require('./fetchStreamReadable/mocks/responses.js');
 
 const {
   specificError1Response,
-  invalidCredentialsErrorResponse } = require('./mocks/errorsResponses.js');
+  invalidCredentialsErrorResponse } = require('./fetchStreamReadable/mocks/errorsResponses.js');
 
 const callbacks = {
   meta: spy(),
