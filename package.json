@@ -28,6 +28,7 @@
     "release:preminor": "npm version preminor --preid=alpha",
     "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
     "postinstall": "mkdir -p dist",
+    "stryker": "npx stryker run",
     "webpack:prod": "webpack --config ./webpack/webpack.prod.js",
     "webpack:dev": "webpack-dev-server --progress --config ./webpack/webpack.dev.js",
     "dist": "npm run webpack:prod"
