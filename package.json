@@ -17,7 +17,7 @@
   "scripts": {
     "test": "nyc --reporter=lcov npm run mocha",
     "mocha": "mocha --ui bdd --require should --reporter json > test-report.json 'test/**/*.test.js'",
-    "test:debug": "mocha --inspect-brk --reporter spec --timeout 20000 test/*.js",
+    "test:debug": "mocha --inspect-brk --reporter spec --timeout 20000 test/*.test.js",
     "posttest": "npm run lint",
     "lint": "eslint 'lib/**/*.js'",
     "release:prerelease": "npm version prerelease",
@@ -28,6 +28,7 @@
     "release:preminor": "npm version preminor --preid=alpha",
     "manualtest": "mocha --reporter list --timeout 10000 test/manual/*.js",
     "postinstall": "mkdir -p dist",
+    "stryker": "npx stryker run",
     "webpack:prod": "webpack --config ./webpack/webpack.prod.js",
     "webpack:dev": "webpack-dev-server --progress --config ./webpack/webpack.dev.js",
     "dist": "npm run webpack:prod"
@@ -57,6 +58,8 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/runtime": "^7.17.8",
+    "@stryker-mutator/core": "^5.6.1",
+    "@stryker-mutator/mocha-runner": "^5.6.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.2.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
