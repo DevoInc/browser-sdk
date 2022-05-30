@@ -1,0 +1,1 @@
+{"msg":"Error Launching Query","status":500,"timestamp":1612958800942,"cid":"93c1fb77451b","object":["Error Launching Query","Error Processing Query: \nwraps: java.lang.NullPointerException"]}
