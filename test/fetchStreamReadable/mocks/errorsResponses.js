@@ -23,6 +23,8 @@ const wrongOperation = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/err
 
 const launchingQuery = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/errorLaunchingQuery.txt');
 
+const javaNullPointer = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/errorJavaNullPointer.txt');
+
 const managingTask = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/errorManagingTask.txt');
 
 const startingTask = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/errorStartingTask.txt');
@@ -49,6 +51,7 @@ module.exports = {
   invalidCredentialsErrorResponse,
   accessNotAllowed,
   canceledQuery,
+  javaNullPointer,
   launchingQuery,
   managingTask,
   startingTask,
