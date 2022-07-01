@@ -2,7 +2,14 @@
 
 Change log.
 
-## Unversioned
+## 3.0.3
+
+fix(fetch_stream): WD-11366 fix detection of fetch stream radable native browsers
+
+## 3.0.2
+
+fix(error_fomat): WD-11228 error format in logs
+
 Delete unused files:
 * lib/oboeRequest.js
 * test/query.js
