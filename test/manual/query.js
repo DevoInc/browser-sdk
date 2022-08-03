@@ -1,7 +1,9 @@
 'use strict';
 
 require('should');
-global.fetch = require('node-fetch');
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
+global.fetch = fetch;
 
 const clientLib = require('../../lib/client');
 const config = require('./config.js');

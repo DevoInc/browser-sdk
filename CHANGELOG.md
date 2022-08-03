@@ -2,6 +2,10 @@
 
 Change log.
 
+## 3.0.4
+
+Fix(node-fetch): wd 11834 fix node fetch vulnerability
+
 ## 3.0.3
 
 fix(fetch_stream): WD-11366 fix detection of fetch stream radable native browsers
