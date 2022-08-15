@@ -101,7 +101,7 @@ Install all dependencies:
 
 ```
 cd browser-sdk
-npm install
+npm ci
 ```
 
 Place your Devo [credentials](#Credentials) in the root of the project
@@ -129,7 +129,7 @@ Open this page in a browser in localhost to try out the capabilities in action.
 
 To install the SDK use `npm`:
 
-    $ npm install @devoinc/browser-sdk
+    $ npm i @devoinc/browser-sdk
 
 Place this code including your
 [credentials](#Credentials)
@@ -524,13 +524,13 @@ Install all dependencies:
 
 ```
 cd browser-sdk
-npm install
+npm ci
 ```
 
 Make sure that everything runs fine:
 
 ```
-npm test
+npm t
 ```
 
 To run manual tests against our integration server run:
@@ -569,4 +569,3 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
