@@ -2,6 +2,11 @@
 
 Change log.
 
+## 3.0.5
+
+Make streamFetch available to web workers (since they are not considered as a browser, they have no window object)
+Allowed to set output format in stream calls.
+
 ## 3.0.4
 
 Fix(node-fetch): wd 11834 fix node fetch vulnerability
