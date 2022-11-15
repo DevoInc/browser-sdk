@@ -1,6 +1,7 @@
 {
-  "extends": ["@devoinc/eslint-config-devo/js-classic-base"],
+  "extends": "@devoinc/eslint-config-devo/js-classic-base",
   "parserOptions": {
+    "ecmaVersion": "2018",
     "sourceType": "module",
     "requireConfigFile": false,
     "ecmaFeatures": {
