@@ -2,6 +2,10 @@
 
 Change log.
 
+## 3.1.0
+
+Eslint and prettier config files updated to use DevoInc libraries: @devoinc/eslint-config-devo & @devoinc/prettier-config
+
 ## 3.0.5
 
 Make streamFetch available to web workers (since they are not considered as a browser, they have no window object)

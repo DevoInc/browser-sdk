@@ -91,5 +91,6 @@
   "engines": {
     "node": ">=14",
     "npm": ">=7"
-  }
+  },
+  "prettier": "@devoinc/prettier-config"
 }
