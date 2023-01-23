@@ -2,6 +2,10 @@
 
 Change log.
 
+## 3.1.1
+
+The separator between events (\\r\\n by default) can be changed in the options parameter.
+
 ## 3.1.0
 
 Eslint and prettier config files updated to use DevoInc libraries: @devoinc/eslint-config-devo & @devoinc/prettier-config

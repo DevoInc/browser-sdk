@@ -1,6 +1,6 @@
 {
   "name": "@devoinc/browser-sdk",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Devo browser SDK",
   "author": "Devo Dev Team",
   "eslintConfig": {
@@ -45,7 +45,7 @@
     "LinQ"
   ],
   "dependencies": {
-    "@devoinc/js-helper": "2.0.0",
+    "@devoinc/js-helper": "^2.0.1",
     "abort-controller": "^3.0.0",
     "detect-browser": "^5.3.0",
     "fetch-readablestream": "^0.2.0",
