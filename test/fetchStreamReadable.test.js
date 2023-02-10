@@ -13,6 +13,7 @@ this.processReader = processReader;
 
 this.processStream = processStream.bind(this);
 const {
+  successfulAbbreviated,
   successfulComplete1,
 } = require('./fetchStreamReadable/mocks/responses.js');
 
@@ -50,6 +51,25 @@ describe('fetchStreamReadable', () => {
   });
 
   forEach([
+    [
+      'successfully read abbreviated meta, events and progress',
+      {
+        bufferString: successfulAbbreviated,
+        isOk: true,
+        statusCode: 200,
+        separator: '\n',
+      },
+      {
+        callbacks: {
+          meta: 1,
+          data: 1,
+          progress: 1,
+          done: 1,
+        },
+        finalState: states.EVENT,
+        bufferString: ''
+      },
+    ],
     [
       'successfully read meta, events and progress with 2 breakpoints',
       {
@@ -117,13 +137,20 @@ describe('fetchStreamReadable', () => {
       finalState,
       bufferString: expectedBufferString
     } = expected;
-
+    this.controller = {
+      abort : () => {
+        this.signal.aborted = true
+      },
+      signal : {
+        aborted : false,
+      },
+    };
     this.processStream(
       MockReader.of(input.bufferString, input.breakpoints),
       callbacksWrap,
       input.isOk,
       input.statusCode,
-      '\r\n'
+      input.separator || '\r\n'
     ).then((result) => {
       result.bufferString.should.be.equal(expectedBufferString);
       result.state.should.be.equal(finalState);

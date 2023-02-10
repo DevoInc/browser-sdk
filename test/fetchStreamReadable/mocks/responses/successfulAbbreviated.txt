@@ -1,0 +1,4 @@
+{"m":[{"name":"eventdate","type":"timestamp"},{"name":"maintable","type":"name"},{"name":"total","type":"int8"}]}
+{"p":[1601894800300]}
+{"d":[1675663200000,["box","win"],548]}
+{"d":[1675664100000,["box","unix"],986]}
