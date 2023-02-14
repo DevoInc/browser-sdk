@@ -2,6 +2,9 @@ const fs = require('fs');
 // use toStrFromTxt to require raw text
 const toStrFromTxt = (location) => fs.readFileSync(location, 'utf8');
 
+// fake response with m attribute instead of metadata attribute
+const successfulAbbreviated = toStrFromTxt('./test/fetchStreamReadable/mocks/responses/successfulAbbreviated.txt');
+
 // query: "from siem.logtrust.web.activity group by eventdate, username, type"
 const successfulComplete1 = toStrFromTxt('./test/fetchStreamReadable/mocks/responses/successfulComplete1.txt');
 
@@ -22,6 +25,7 @@ const successfulNoData = toStrFromTxt('./test/fetchStreamReadable/mocks/response
 
 
 module.exports = {
+  successfulAbbreviated,
   successfulComplete1,
   successfulLongResponse,
   successfulMediumResponse1,
