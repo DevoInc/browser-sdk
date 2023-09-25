@@ -12,6 +12,8 @@ global.performance = performance; // performance polyfill for node
 this.processReader = processReader;
 
 this.processStream = processStream.bind(this);
+this.controller = { signal: { aborted: false }};
+
 const {
   successfulComplete1,
 } = require('./fetchStreamReadable/mocks/responses.js');
@@ -19,6 +21,8 @@ const {
 const {
   specificError1Response,
   invalidCredentialsErrorResponse } = require('./fetchStreamReadable/mocks/errorsResponses.js');
+
+const separator = '\n';
 
 const callbacks = {
   meta: spy(),
@@ -29,16 +33,52 @@ const callbacks = {
   abort: spy(),
 };
 
+const outData = {};
+function clearOut() {
+  Object.keys(outData).forEach(key => delete outData[key]);
+}
+function appendOut(key, data, flat) {
+  if (!outData[key]) outData[key] = [];
+  if (flat && Array.isArray(data))
+    data.forEach((d) => outData[key].push(d));
+  else
+    outData[key].push(data);
+}
+
 const callbacksWrap = {
-  processMeta: callbacks.meta,
-  processEvents: callbacks.data,
-  processProgress: callbacks.progress,
-  processError: callbacks.error,
+  processMeta: (m) => { appendOut('m', m); callbacks.meta(); },
+  processEvents: (d) => { appendOut('d', d, true); callbacks.data(); },
+  processProgress: (p) => { appendOut('p', p); callbacks.progress() },
+  processError: (e) => { appendOut('e', e); callbacks.error(); },
   processDone: callbacks.done,
   abort: callbacks.abort,
   pendingEvents: [],
   pendingData: [],
 };
+
+function extract(text, sep = separator) {
+  const lines = text.split(sep);
+  const result = {};
+  const add = (key1, data, key2 = key1, takeobject) => {
+    if (data[key2]) {
+      if (!result[key1]) result[key1] = [];
+      result[key1].push(takeobject ? data : data[key2]);
+      return true;
+    }
+    return false;
+  };
+  lines.forEach((line) => {
+    if (line.length === 0) return;
+    const json = JSON.parse(line);
+    add('m', json, 'metadata') || add('m', json);
+    add('d', json);
+    add('p', json);
+    add('e', json, 'error', true);
+    add('e', json, 'msg', true);
+    add('e', json, 'e', true);
+  });
+  return result;
+}
 
 describe('fetchStreamReadable', () => {
   before(function () {
@@ -54,19 +94,19 @@ describe('fetchStreamReadable', () => {
       'successfully read meta, events and progress with 2 breakpoints',
       {
         bufferString: successfulComplete1,
-        breakpoints: [20, successfulComplete1.length],
+        breakpoints: [20],
         isOk: true,
         statusCode: 200,
       },
       {
         callbacks: {
-          meta: 0,
-          data: 0,
-          progress: 0,
+          meta: 1,
+          data: 1, // 2 events, 1 call
+          progress: 1,
           done: 1,
         },
-        finalState: states.NOT_STARTED,
-        bufferString: '{"m":{"eventdate":{"type":"timestamp","index":0},"username":{"type":"str","index":1},"type":{"type":"str","index":2}},"metadata":[{"name":"eventdate","type":"timestamp"},{"name":"username","type":"str"},{"name":"type","type":"str"}]}\n{"p":[1601894800300]}\n{"d":[1601894807718,"fake@email.com","request"]}\n{"d":[1601894807720,"fake@email.com","response"]}\n'
+        finalState: states.EVENT,
+        out: extract(successfulComplete1),
       },
     ],
     [
@@ -86,7 +126,7 @@ describe('fetchStreamReadable', () => {
           done: 0
         },
         finalState: states.ERROR_PARSED,
-        bufferString: specificError1Response.substring(0, specificError1Response.length - 1)
+        out: extract(specificError1Response),
       }
     ],
     [
@@ -106,7 +146,7 @@ describe('fetchStreamReadable', () => {
           done: 0
         },
         finalState: states.ERROR_PARSED,
-        bufferString: invalidCredentialsErrorResponse.substring(0, invalidCredentialsErrorResponse.length - 1)
+        out: extract(invalidCredentialsErrorResponse),
       }
     ],
   ]).it('should %s', (message, input, expected, done) => {
@@ -115,17 +155,19 @@ describe('fetchStreamReadable', () => {
     const {
       callbacks: callbacksExpected,
       finalState,
-      bufferString: expectedBufferString
+      out,
     } = expected;
+
+    clearOut();
 
     this.processStream(
       MockReader.of(input.bufferString, input.breakpoints),
       callbacksWrap,
       input.isOk,
       input.statusCode,
-      '\r\n'
+      separator
     ).then((result) => {
-      result.bufferString.should.be.equal(expectedBufferString);
+      JSON.stringify(out).should.be.equal(JSON.stringify(outData));
       result.state.should.be.equal(finalState);
       Object.entries(callbacksExpected).forEach((entry) => {
         assert.callCount(callbacks[entry[0]], entry[1]);

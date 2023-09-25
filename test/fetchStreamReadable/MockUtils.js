@@ -11,7 +11,8 @@ function str2ArrayBuffer(str) {
 }
 
 function* bufferRead(buffer) {
-  for (const chunk of buffer) {
+  while (buffer.length > 0) {
+    const chunk = buffer.shift();
     yield new Uint8Array(str2ArrayBuffer(chunk));
   }
 }
@@ -37,6 +38,10 @@ class MockReader {
 
   read() {
     return new Promise((resolve) => {
+      if (this.buffer.length === 0){
+        resolve({ done: true});
+        return;
+      }
       resolve(this.generator.next());
     });
   }
