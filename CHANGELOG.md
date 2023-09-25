@@ -2,6 +2,10 @@
 
 Change log.
 
+## 3.1.2
+
+Supports abbreviated metadata (m attribute when metadata is not present).
+
 ## 3.1.1
 
 The separator between events (\\r\\n by default) can be changed in the options parameter.

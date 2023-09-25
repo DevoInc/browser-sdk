@@ -12,9 +12,9 @@ global.performance = performance; // performance polyfill for node
 this.processReader = processReader;
 
 this.processStream = processStream.bind(this);
-this.controller = { signal: { aborted: false }};
 
 const {
+  successfulAbbreviated,
   successfulComplete1,
 } = require('./fetchStreamReadable/mocks/responses.js');
 
@@ -91,6 +91,25 @@ describe('fetchStreamReadable', () => {
 
   forEach([
     [
+      'successfully read abbreviated meta, events and progress',
+      {
+        bufferString: successfulAbbreviated,
+        isOk: true,
+        statusCode: 200,
+        separator: '\n',
+      },
+      {
+        callbacks: {
+          meta: 1,
+          data: 1,
+          progress: 1,
+          done: 1,
+        },
+        finalState: states.EVENT,
+        bufferString: ''
+      },
+    ],
+    [
       'successfully read meta, events and progress with 2 breakpoints',
       {
         bufferString: successfulComplete1,
@@ -160,12 +179,21 @@ describe('fetchStreamReadable', () => {
 
     clearOut();
 
+    this.controller = {
+      abort : () => {
+        this.signal.aborted = true
+      },
+      signal : {
+        aborted : false,
+      },
+    };
+
     this.processStream(
       MockReader.of(input.bufferString, input.breakpoints),
       callbacksWrap,
       input.isOk,
       input.statusCode,
-      separator
+      input.separator || separator
     ).then((result) => {
       JSON.stringify(out).should.be.equal(JSON.stringify(outData));
       result.state.should.be.equal(finalState);
