@@ -106,7 +106,7 @@ describe('fetchStreamReadable', () => {
           done: 1,
         },
         finalState: states.EVENT,
-        bufferString: ''
+        out: extract(successfulAbbreviated),
       },
     ],
     [
