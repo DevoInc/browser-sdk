@@ -2,6 +2,10 @@
 
 Change log.
 
+## 3.1.3
+
+Supports very long records by saving heap memory when downloading data.
+
 ## 3.1.2
 
 Supports abbreviated metadata (m attribute when metadata is not present).
