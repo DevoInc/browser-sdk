@@ -544,28 +544,15 @@ Note: you will need to place your [credentials](#credentials) in the file
 just a JSON file that contains the same attributes as the
 [initialization](#initialization) parameter.
 If needed you can also use environment variables with the file `$HOME/.devo.json`. In the case you have the file `credentials.json` in the root of your project, this will replace the enviroment variables.
- See the Node.js project for more details.
+See the Node.js project for more details.
+
+To publish [to npmjs.com](https://www.npmjs.com/package/@devoinc/browser-sdk), simply create a tag
+
+```sh
+git tag vX.X.X
+git push --tags
+```
+and [from the GH interface](https://github.com/DevoInc/browser-sdk/tags), create a release associated to that tag.
 
 And start playing!
 Pull requests are welcome ☺
-
-# Licensed under The MIT License
-
-(C) 2022 Devo, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the 'Software'), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
