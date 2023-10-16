@@ -15,6 +15,7 @@ describe('parser', () => {
         homogenizeErrorFormat(parsedError, parsedError.status);
         should(parsedError).have.property('msg');
         should(parsedError).have.property('status');
+        should(parsedError).have.property('source');
         createErrorResponse(parsedError);
         should(parsedError).have.property('msg');
         should(parsedError).have.property('status');

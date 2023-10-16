@@ -2,6 +2,11 @@
 
 Change log.
 
+## 3.1.4
+
+Fix API error processing to avoid calling done callback.
+Catch non catched errors to send them by callbacks as well.
+
 ## 3.1.3
 
 Supports very long records by saving heap memory when downloading data.
