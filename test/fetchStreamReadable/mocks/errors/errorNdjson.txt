@@ -1,0 +1,1 @@
+{"e": {"msg": "com.devo.malote.syntax.ParseException: Encountered \" <ID> \"blablabla \"\" at line 1, column 1.\nWas expecting one of:\n    <EOF> \n    \"as\" ...\n    \"every\" ...\n    \"group\" ...\n    \"limit\" ...\n    \"offset\" ...\n    \"order\" ...\n    \"pragma\" ...\n    \"select\" ...\n    \"then\" ...\n    \"where\" ...\n    \",\" ...\n    \";\" ...\n    "}}

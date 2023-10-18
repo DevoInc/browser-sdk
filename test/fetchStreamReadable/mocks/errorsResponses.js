@@ -43,6 +43,8 @@ const accessNotAllowed = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/a
 
 const unauthorizedMessage = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/unauthorizedMessage.txt');
 
+const errorNdjson = toStrFromTxt('./test/fetchStreamReadable/mocks/errors/errorNdjson.txt');
+
 module.exports = {
   genericError1,
   specificError1,
@@ -60,5 +62,6 @@ module.exports = {
   unauthorizedMessage,
   whileExecutingTask,
   wrongFieldName,
-  wrongOperation
+  wrongOperation,
+  errorNdjson,
 };

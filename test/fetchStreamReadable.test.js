@@ -195,6 +195,11 @@ describe('fetchStreamReadable', () => {
       input.statusCode,
       input.separator || separator
     ).then((result) => {
+      // source is an attribute injected in some errors, but it should not be
+      // in the input (out) so it must be deleted before comparing
+      if (out && out.e && out.e[0].source) delete out.e[0].source;
+      if (outData && outData.e && outData.e[0].source)
+        delete outData.e[0].source;
       JSON.stringify(out).should.be.equal(JSON.stringify(outData));
       result.state.should.be.equal(finalState);
       Object.entries(callbacksExpected).forEach((entry) => {
