@@ -2,6 +2,11 @@
 
 Change log.
 
+## 3.1.5
+
+Fix vulns by updating transitive package (@devoinc/js-helper)
+-  https://security.snyk.io/vuln/SNYK-JS-CRYPTOJS-6028119
+
 ## 3.1.4
 
 Fix API error processing to avoid calling done callback.
